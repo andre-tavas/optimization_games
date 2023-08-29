@@ -1,0 +1,20 @@
+- OK Guardar custo do caminho percorrido
+- OK Mostrar pontuação até o momento
+- OK Criar função 1x1
+
+- Colocar final de jogo: ganhador e perdedor
+- Cronometro depois que o primeiro terminar
+- Iniciar/Reiniciar o jogo
+- Instruções (deixar na tela antes de Iniciar)
+
+SE DER
+- Carinha dos viajantes
+- Origem com formato de casa
+- Tamanho da janela
+- Lista de prendas
+
+
+!!! EM caso de empate, os dois perdem
+
+
+- Colocar distância entre os pontos?
