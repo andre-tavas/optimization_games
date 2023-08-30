@@ -15,7 +15,7 @@ def generate_cities_loc(min_width = -250, max_width = 250,
         max_width = int(width/2)
     
     cities_loc = []
-    for c in range(2):
+    for c in range(10):
         x = random.randint(min_width, max_width)
         y = random.randint(min_height,max_height)
         cities_loc.append((x,y))

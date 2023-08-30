@@ -19,12 +19,10 @@ class Game:
         self.is_finished = False
         self._commands_dict = commands_dict
         self.arrow.set_destination(self.candidates[0])
-        self.score.cost = 0
         self.arrow.draw_arrow()
-        # self.keys_controlling(commands_dict)
     
     @property
-    def candidates(self) -> List[City]: # mudar para candidates
+    def candidates(self) -> List[City]:
         '''
         Returns the unvisited and diferent from 
         the current origin and destination
@@ -53,6 +51,9 @@ class Game:
                 closest = n
         return closest
     
+    def get_score(self):
+        return self.score.current_score
+
     def next_neighbour(self, direction : str):
         direction = direction.lower()
         current_angle = self.arrow.current_angle
@@ -107,9 +108,10 @@ class Game:
 
     def start(self):
         if not self._commands_dict:
-            commands_dict = {'up' : 'Up', 'down' : 'Down', 
+            self._commands_dict = {'up' : 'Up', 'down' : 'Down', 
                             'right' : 'Right', 'left' : 'Left',
                             'travel' : 'Return'}
+            commands_dict = self._commands_dict
         else:
             commands_dict = self._commands_dict
         
@@ -119,3 +121,10 @@ class Game:
         turtle.onkey(lambda: self.next_neighbour('left'), commands_dict['left'])
         turtle.onkey(lambda: self.next_neighbour('right'), commands_dict['right'])
         turtle.onkey(self.make_travel, commands_dict['travel'])
+
+    def clear_commands(self):
+        turtle.onkey(None, self._commands_dict['up'])
+        turtle.onkey(None, self._commands_dict['down'])
+        turtle.onkey(None, self._commands_dict['left'])
+        turtle.onkey(None, self._commands_dict['right'])
+        turtle.onkey(None, self._commands_dict['travel'])

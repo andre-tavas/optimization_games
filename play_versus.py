@@ -19,17 +19,6 @@ def main():
     
     # screen.mainloop()
 
-# def main():
-#     screen = turtle.Screen()
-#     screen.title("Caixeiro Viajante")
-#     screen.setup(width=0.85, height=0.90, starty=0)
-#     start_screen = StartScreen(screen)
-#     start_screen.show_instructions()
-#     screen.listen()
-#     screen.onkeypress(start(screen), 'Return')
-#     screen.mainloop()
-
-
 def create_game(cities_loc, score_pos, commands_dict = None):
     cities = City.create_objects(cities_loc)
     game = Game(cities, score_pos, commands_dict)
@@ -38,12 +27,12 @@ def create_game(cities_loc, score_pos, commands_dict = None):
 def start(screen):
     game_screen = GameScreen(screen = screen, split = True)
     cities_loc = utils.generate_cities_loc(width= game_screen.width_player,
-                                        height= game_screen.height)
+                                        height= game_screen.height * 0.85)
     width_diff = game_screen.width_player/2
     cities_loc_1 = [(x - width_diff, y) for (x,y) in cities_loc]
     cities_loc_2 = [(x + width_diff, y) for (x,y) in cities_loc]
-    score_pos_1 = (-game_screen.width_player/2, game_screen.height/2 * 0.95)
-    score_pos_2 = (game_screen.width_player/2, game_screen.height/2 * 0.95)
+    score_pos_1 = (-game_screen.width_player/2, game_screen.height/2)
+    score_pos_2 = (game_screen.width_player/2, game_screen.height/2)
     commands_dict_1 = {'up' : 'w', 'down' : 's',
                     'right' : 'd', 'left' : 'a',
                     'travel' : 'space'}
@@ -59,7 +48,8 @@ def start(screen):
 
         screen.update()
     
-    screen.delay(5)
+    game_screen.game_over(score_1=game_1.get_score(), score_2=game_2.get_score())
+    
     screen.clear()
     return None
 
