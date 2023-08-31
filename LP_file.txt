@@ -1,0 +1,35 @@
+\* Problema_Caixeiro_Viajante *\
+Minimize
+OBJ: 542.309874518 visitada_0_1 + 326.038341304 visitada_0_2
+ + 268.076481624 visitada_0_3 + 542.309874518 visitada_1_0
+ + 346.659775573 visitada_1_2 + 294.30766215 visitada_1_3
+ + 326.038341304 visitada_2_0 + 346.659775573 visitada_2_1
+ + 273.239821402 visitada_2_3 + 268.076481624 visitada_3_0
+ + 294.30766215 visitada_3_1 + 273.239821402 visitada_3_2
+Subject To
+_C1: visitada_0_0 + visitada_0_1 + visitada_0_2 + visitada_0_3 = 1
+_C2: visitada_0_0 + visitada_1_0 + visitada_2_0 + visitada_3_0 = 1
+_C3: visitada_1_0 + visitada_1_1 + visitada_1_2 + visitada_1_3 = 1
+_C4: visitada_0_1 + visitada_1_1 + visitada_2_1 + visitada_3_1 = 1
+_C5: visitada_2_0 + visitada_2_1 + visitada_2_2 + visitada_2_3 = 1
+_C6: visitada_0_2 + visitada_1_2 + visitada_2_2 + visitada_3_2 = 1
+_C7: visitada_3_0 + visitada_3_1 + visitada_3_2 + visitada_3_3 = 1
+_C8: visitada_0_3 + visitada_1_3 + visitada_2_3 + visitada_3_3 = 1
+Binaries
+visitada_0_0
+visitada_0_1
+visitada_0_2
+visitada_0_3
+visitada_1_0
+visitada_1_1
+visitada_1_2
+visitada_1_3
+visitada_2_0
+visitada_2_1
+visitada_2_2
+visitada_2_3
+visitada_3_0
+visitada_3_1
+visitada_3_2
+visitada_3_3
+End

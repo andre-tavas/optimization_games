@@ -128,3 +128,7 @@ class Game:
         turtle.onkey(None, self._commands_dict['left'])
         turtle.onkey(None, self._commands_dict['right'])
         turtle.onkey(None, self._commands_dict['travel'])
+
+    def clear_game(self):
+        # TODO: Clear all the objects (save the objects somewhere and then delete them)
+        pass

@@ -6,7 +6,7 @@ class GameScreen:
     def __init__(self, screen: turtle._Screen, split : bool = True):
         self.screen = screen
         self.screen.bgcolor('white')
-        self.width_player = int(self.screen.window_width()/2 * 0.9)*2
+        self.width_player = int(self.screen.window_width()/2 * 0.85)*2
         self.height = self.screen.window_height() * 0.9
         if split:
             self._split_screen()
@@ -101,3 +101,4 @@ class StartScreen:
         screen.onkey(None, 't')
         fun(screen)
         self.wait_for_start(fun, screen)
+

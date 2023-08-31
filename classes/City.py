@@ -10,7 +10,9 @@ class City(AbstractTurtle):
         self.name = name
         self.visited = False
         self.goto(pos)
-        self.write(name)
+        # self.pencolor('red')
+        self.write(name, align="center", font=("Arial", 12, "normal"))
+        # self.hideturtle()        
 
     def __repr__(self) -> str:
         return f"{self.name}"
@@ -19,7 +21,7 @@ class City(AbstractTurtle):
         '''Return the linear distance to another city'''
         x_distance = abs(self.xcor() - other.xcor())
         y_distance = abs(self.ycor() - other.ycor())
-        return math.sqrt(x_distance**2 + y_distance**2)
+        return int(math.sqrt(x_distance**2 + y_distance**2))
     
     def angle(self, other : Type['City']) -> float:
         return self.towards(other)

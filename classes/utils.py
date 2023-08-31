@@ -7,7 +7,8 @@ def is_between(number, lower_bound, upper_bound):
 
 def generate_cities_loc(min_width = -250, max_width = 250, 
                    min_height = -250, max_height = 250, 
-                   width = None, height = None):
+                   width = None, height = None, 
+                   num_cities = 10):
     if width and height:
         min_height = int(-height/2)
         max_height = int(height/2 * 0.85)
@@ -15,7 +16,7 @@ def generate_cities_loc(min_width = -250, max_width = 250,
         max_width = int(width/2)
     
     cities_loc = []
-    for c in range(10):
+    for c in range(num_cities):
         x = random.randint(min_width, max_width)
         y = random.randint(min_height,max_height)
         cities_loc.append((x,y))
