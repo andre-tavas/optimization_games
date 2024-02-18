@@ -1,4 +1,4 @@
-import pulp
+from pyomo.environ import *
 from classes.City import City
 from itertools import chain, combinations
 from typing import List
@@ -14,28 +14,37 @@ class OptimalSalesman:
         self.optimal_solution = None
 
     def solve(self):
-        cidades = self.cities
 
         # Criando o problema de minimização
-        problem = pulp.LpProblem("Problema_Caixeiro_Viajante", pulp.LpMinimize)
+        #problem = pulp.LpProblem("Problema_Caixeiro_Viajante", pulp.LpMinimize)
+        model = ConcreteModel()
 
-        x = {(i.name, j.name): pulp.LpVariable(f"visitada_{i}_{j}", cat=pulp.LpBinary)
-            for i in self.cities for j in self.cities if i != j}
+        cities = [i.name for i in self.cities]
+
+        x = Var(cities, cities, within=Binary)
+
+        model.obj = Objective(expr=sum(i.distance_to(j) * x[i.name, j.name] 
+                                       for i in self.cities for j in self.cities if i != j),
+                                       sense=minimize)
         
-        u = {cidade.name: pulp.LpVariable(f"u_{cidade.name}", lowBound=0, upBound=len(self.cities) - 1, cat=pulp.LpInteger)
-            for cidade in self.cities}
-        
-        # Objective function
-        problem += pulp.lpSum(i.distance_to(j) * x[(i.name, j.name)]
-                              for i in self.cities for j in self.cities if i != j)
-        
-        # # Restrições
+        # Adicionando restrições:
+        # 1. Cada cidade deve ser visitada exatamente uma vez
         for i in self.cities:
-            # Certifique-se de que cada cidade é visitada uma única vez
-            # So sai um arco da cidade
-            problem += pulp.lpSum(x[(i.name, j.name)] for j in self.cities if i != j) == 1
-            # So entra um arco na cidade
-            problem += pulp.lpSum(x[(j.name, i.name)] for j in self.cities if i != j) == 1
+            model.add_constraint(sum(x[i.name, j.name] for j in self.cities if i != j) == 1)
+
+        # 2. Não é possível ir de uma cidade para si mesma
+        for i in self.cities:
+            model.add_constraint(x[i.name, i.name] == 0)
+
+        # 3. A rota deve formar um ciclo
+        for i in self.cities:
+            for j in self.cities:
+                if i != j:
+                    model.add_constraint(x[i.name, j.name] + x[j.name, i.name] <= 1)
+
+        # Resolvendo o problema
+        solver = SolverFactory("gurobi")
+        solver.solve(model)
 
         # Restrição de subciclo
         all_subsets = self.get_subsets(self.cities)
