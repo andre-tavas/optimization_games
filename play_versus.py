@@ -6,9 +6,9 @@ from classes.Game import Game
 from classes.AppScreen import AppScreen
 
 def main():
-    app = AppScreen('Caixeiro Viajante', instructions=False, optimal=True)
+    app = AppScreen('Travelling salesman game', instructions=False, optimal=True)
 
-    app.game_loop(play, n_cities= 4)
+    app.game_loop(play, n_cities= 10)
 
 def create_game(cities_loc, score_pos, commands_dict = None):
     cities = City.create_objects(cities_loc)
