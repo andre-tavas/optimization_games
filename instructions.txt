@@ -1,8 +1,13 @@
-Cada jogador(a) deve percorrer todos os pontos e terminar no 
-ponto inicial (vermelho) percorrendo o menor caminho possivel.
+Each player should go through all nodes and go back to the
+starting one (red) trying to make the shortest path.
 
-Para mudar a cidade que a seta esta apontando, use as o teclado.
-Para ir de um ponto a outro, pressione "Viajar".
+The players should use the following keys to change to where
+the arrow is point and from one city to another:
 
-Apos o primeiro jogador terminar o jogo, o outro tem 5 segundos para
-concluir. Em caso de empate, ambos perdem.
+ Right player | Left player  
+-----------------------------
+      a       |  left arrow  
+      s       |  down arrow  
+      d       |  right arrow 
+      w       |  up arrow    
+   space   |  return      
