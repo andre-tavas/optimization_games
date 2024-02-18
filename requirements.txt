@@ -1,0 +1,4 @@
+pandas
+typing
+turtle==0.0.1
+pulp==2.1
